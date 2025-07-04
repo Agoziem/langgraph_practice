@@ -1,6 +1,8 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_openai import ChatOpenAI
+# from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
+
 
 generation_prompt = ChatPromptTemplate.from_messages(
     [
@@ -25,7 +27,10 @@ reflection_prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-llm = ChatOpenAI(model="gpt-4o")
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    temperature=0.0,  # Set temperature to 0 for deterministic output
+)
 
 generation_chain = generation_prompt | llm
 reflection_chain = reflection_prompt | llm

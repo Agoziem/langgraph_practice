@@ -9,18 +9,18 @@ pydantic_parser = PydanticToolsParser(tools=[AnswerQuestion])
 
 parser = JsonOutputToolsParser(return_id=True)
 
-# Actor Agent Prompt 
+# Actor Agent Prompt
 actor_prompt_template = ChatPromptTemplate.from_messages(
     [
         (
             "system",
             """You are expert AI researcher.
-Current time: {time}
+            Current time: {time}
 
-1. {first_instruction}
-2. Reflect and critique your answer. Be severe to maximize improvement.
-3. After the reflection, **list 1-3 search queries separately** for researching improvements. Do not include them inside the reflection.
-""",
+            1. {first_instruction}
+            2. Reflect and critique your answer. Be severe to maximize improvement.
+            3. After the reflection, **list 1-3 search queries separately** for researching improvements. Do not include them inside the reflection.
+            """,
         ),
         MessagesPlaceholder(variable_name="messages"),
         ("system", "Answer the user's question above using the required format."),
@@ -35,7 +35,8 @@ first_responder_prompt_template = actor_prompt_template.partial(
 
 llm = ChatOpenAI(model="gpt-4o")
 
-first_responder_chain = first_responder_prompt_template | llm.bind_tools(tools=[AnswerQuestion], tool_choice='AnswerQuestion') 
+first_responder_chain = first_responder_prompt_template | llm.bind_tools(
+    tools=[AnswerQuestion], tool_choice='AnswerQuestion')
 
 validator = PydanticToolsParser(tools=[AnswerQuestion])
 
@@ -59,4 +60,3 @@ revisor_chain = actor_prompt_template.partial(
 # })s
 
 # print(response)
-

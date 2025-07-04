@@ -32,5 +32,10 @@ dependencies = [
     "pydantic==2.10.6",
     "pydantic-settings==2.7.1",
     "SQLAlchemy==2.0.38",
-    "orjson==3.10.15"
+    "orjson==3.10.15",
+    "grandalf>=0.8",
+    "ipython>=9.3.0",
+    "ipykernel>=6.29.5",
+    "sentence-transformers>=5.0.0",
+    "langchain-huggingface>=0.1.2",
 ]

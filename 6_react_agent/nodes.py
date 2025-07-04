@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 
 from agent_reason_runnable import react_agent_runnable, tools
-from react_state import AgentState
+from react_state import AgentState, AgentAction
 
 load_dotenv()
 
@@ -13,9 +13,8 @@ def reason_node(state: AgentState):
 def act_node(state: AgentState):
     agent_action = state["agent_outcome"]
     
-    # Extract tool name and input from AgentAction
-    tool_name = agent_action.tool
-    tool_input = agent_action.tool_input
+    tool_name = agent_action.tool if isinstance(agent_action, AgentAction) else None
+    tool_input = agent_action.tool_input if isinstance(agent_action, AgentAction) else None
     
     # Find the matching tool function
     tool_function = None

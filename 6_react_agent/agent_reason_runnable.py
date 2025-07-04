@@ -1,10 +1,13 @@
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain.agents import tool, create_react_agent
 import datetime
 from langchain_community.tools import TavilySearchResults
 from langchain import hub
 
-llm = ChatOpenAI(model="gpt-4")
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    temperature=0.0,  # Set temperature to 0 for deterministic output
+)
 
 @tool
 def get_system_time(format: str = "%Y-%m-%d %H:%M:%S"):

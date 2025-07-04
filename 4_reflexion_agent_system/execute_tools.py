@@ -8,7 +8,7 @@ tavily_tool = TavilySearchResults(max_results=5)
 
 # Function to execute search queries from AnswerQuestion tool calls
 def execute_tools(state: List[BaseMessage]) -> List[BaseMessage]:
-    last_ai_message: AIMessage = state[-1]
+    last_ai_message: BaseMessage = state[-1]  # Get the last AI message in the state
     
     # Extract tool calls from the AI message
     if not hasattr(last_ai_message, "tool_calls") or not last_ai_message.tool_calls:
