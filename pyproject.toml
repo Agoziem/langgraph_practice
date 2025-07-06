@@ -38,4 +38,5 @@ dependencies = [
     "ipykernel>=6.29.5",
     "sentence-transformers>=5.0.0",
     "langchain-huggingface>=0.1.2",
+    "langchain-experimental>=0.3.4",
 ]
